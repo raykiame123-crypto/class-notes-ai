@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Class Notes AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" data-go="home">📚 Class Notes AI</button>
+  </header>
+
+  <main>
+    <!-- HOME: list of saved lessons -->
+    <section id="view-home" class="view">
+      <div class="hero">
+        <h1>Turn your class into colorful study pages</h1>
+        <p>Put your phone or laptop on the desk, press record, and let the AI build your course.</p>
+        <button class="btn btn-big" data-go="record">🎙️ New lesson</button>
+      </div>
+      <h2>My lessons</h2>
+      <div id="lesson-list" class="lesson-list"></div>
+    </section>
+
+    <!-- RECORD: listen to the teacher -->
+    <section id="view-record" class="view" hidden>
+      <div class="record-setup">
+        <label>Subject <input id="subject" placeholder="e.g. Biology, History, Maths" /></label>
+        <label>Teacher speaks
+          <select id="lang">
+            <option value="en-US">English</option>
+            <option value="fr-FR">Français</option>
+            <option value="es-ES">Español</option>
+            <option value="pt-BR">Português</option>
+            <option value="de-DE">Deutsch</option>
+            <option value="it-IT">Italiano</option>
+            <option value="ar-SA">العربية</option>
+            <option value="sw-KE">Kiswahili</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="mic-area">
+        <button id="mic" class="mic" aria-label="Start recording">🎙️</button>
+        <div id="mic-status" class="mic-status">Tap the microphone to start listening</div>
+        <div id="timer" class="timer">00:00</div>
+      </div>
+
+      <p id="no-speech" class="warning" hidden>
+        This browser can't listen live. Use <b>Google Chrome</b> or <b>Microsoft Edge</b> (or Safari on iPhone),
+        or paste the lesson text below.
+      </p>
+
+      <label class="transcript-label">What the teacher said (you can also type or paste here)</label>
+      <textarea id="transcript" rows="10" placeholder="The words will appear here as the teacher speaks…"></textarea>
+      <div id="interim" class="interim"></div>
+
+      <div class="actions">
+        <button id="make" class="btn btn-big">✨ Make my course</button>
+      </div>
+      <div id="make-status" class="make-status" hidden>
+        <div class="spinner"></div>
+        <span>The AI is writing your course… this can take a minute.</span>
+      </div>
+      <p id="make-error" class="error" hidden></p>
+    </section>
+
+    <!-- COURSE: the colorful result -->
+    <section id="view-course" class="view" hidden>
+      <div class="course-head">
+        <div>
+          <div id="course-subject" class="chip"></div>
+          <h1 id="course-title"></h1>
+          <p id="course-summary" class="summary"></p>
+        </div>
+        <div class="course-actions">
+          <button class="btn btn-ghost" id="print">🖨️ Print / PDF</button>
+          <button class="btn btn-ghost" id="delete">🗑️ Delete</button>
+        </div>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="pages">📖 Pages</button>
+        <button class="tab" data-tab="vocab">🔤 Words</button>
+        <button class="tab" data-tab="cards">🃏 Flashcards</button>
+        <button class="tab" data-tab="quiz">✅ Quiz</button>
+        <button class="tab" data-tab="tips">💡 Tips</button>
+      </nav>
+
+      <div id="tab-pages" class="tab-panel">
+        <div id="page"></div>
+        <div class="pager">
+          <button class="btn btn-ghost" id="prev">◀ Back</button>
+          <span id="page-num"></span>
+          <button class="btn btn-ghost" id="next">Next ▶</button>
+        </div>
+        <div id="all-pages" class="all-pages"></div>
+      </div>
+      <div id="tab-vocab" class="tab-panel" hidden></div>
+      <div id="tab-cards" class="tab-panel" hidden></div>
+      <div id="tab-quiz" class="tab-panel" hidden></div>
+      <div id="tab-tips" class="tab-panel" hidden></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

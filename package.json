@@ -1,0 +1,26 @@
+{
+  "name": "class-notes-ai",
+  "version": "1.0.0",
+  "description": "Record your teacher and get a colorful AI-made course to revise from",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raykiame123-crypto/class-notes-ai.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raykiame123-crypto/class-notes-ai/issues"
+  },
+  "homepage": "https://github.com/raykiame123-crypto/class-notes-ai#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "express": "^5.3.0"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}
