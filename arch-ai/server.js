@@ -4,6 +4,12 @@ import { fileURLToPath } from "node:url";
 import Anthropic from "@anthropic-ai/sdk";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+
+// Read ANTHROPIC_API_KEY from arch-ai/.env if that file exists (it is git-ignored).
+try {
+  process.loadEnvFile(path.join(here, ".env"));
+} catch {}
+
 const app = express();
 const client = new Anthropic();
 const PORT = process.env.PORT || 3001;
