@@ -1,0 +1,19 @@
+{
+  "name": "arch-ai",
+  "version": "1.0.0",
+  "description": "AI architectural design studio: generate a house design, edit it in 3D, export to AutoCAD (DXF) and render it",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "express": "^5.3.0",
+    "three": "^0.170.0"
+  }
+}

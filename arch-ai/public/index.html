@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arch AI Studio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    { "imports": { "three": "/vendor/three/build/three.module.js", "three/addons/": "/vendor/three/examples/jsm/" } }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">◆</span> Arch AI Studio</div>
+    <input id="projectName" class="project-name" aria-label="Project name" />
+    <div class="actions">
+      <button id="btnNew" title="Start an empty design">New</button>
+      <button id="btnOpen" title="Open a saved .json design">Open</button>
+      <button id="btnSave" title="Save the design as .json">Save</button>
+      <span class="sep"></span>
+      <button id="btnPlanDxf" class="accent" title="2D floor plans for AutoCAD">Plan DXF</button>
+      <button id="btnModelDxf" class="accent" title="3D model for AutoCAD">3D DXF</button>
+      <span class="sep"></span>
+      <button id="btnRender" class="primary" title="Build and render the building">Render</button>
+      <button id="btnShot" title="Save the current view as a PNG">Save image</button>
+    </div>
+    <input type="file" id="fileInput" accept=".json,application/json" hidden />
+  </header>
+
+  <main class="layout">
+    <aside class="panel left">
+      <section>
+        <h2>AI architect</h2>
+        <label for="brief">Describe the building</label>
+        <textarea id="brief" rows="5" placeholder="e.g. Two-storey family house, about 140 m², 3 bedrooms and 2 bathrooms upstairs, open kitchen and living room facing the garden, home office downstairs, gable roof."></textarea>
+        <button id="btnGenerate" class="primary wide">Generate design</button>
+      </section>
+      <section>
+        <label for="change">Ask for a change</label>
+        <textarea id="change" rows="3" placeholder="e.g. Make the living room 1 m wider and add a window to the study."></textarea>
+        <button id="btnChange" class="wide">Apply change with AI</button>
+        <p id="aiStatus" class="ai-status" role="status"></p>
+      </section>
+      <section>
+        <h3>Design notes</h3>
+        <p id="notes" class="notes"></p>
+        <button id="btnExample" class="link">Load example house</button>
+      </section>
+    </aside>
+
+    <section class="stage">
+      <div class="toolbar" role="toolbar">
+        <div class="group tools">
+          <button data-tool="select" title="Select and move (V)">Select</button>
+          <button data-tool="wall" title="Draw walls (W)">Wall</button>
+          <button data-tool="door" title="Place a door on a wall (D)">Door</button>
+          <button data-tool="window" title="Place a window on a wall (N)">Window</button>
+          <button data-tool="room" title="Drag to draw a room (R)">Room</button>
+          <button id="btnDelete" title="Delete selection (Del)">Delete</button>
+        </div>
+        <div class="group">
+          <button id="btnUndo" title="Undo (Ctrl+Z)">↶</button>
+          <button id="btnRedo" title="Redo (Ctrl+Y)">↷</button>
+        </div>
+        <div class="group">
+          <select id="levelSelect" aria-label="Active level"></select>
+          <label class="check"><input type="checkbox" id="chkGhost" checked /> Lower floors</label>
+          <label class="check"><input type="checkbox" id="chkRoof" /> Roof</label>
+          <label class="check"><input type="checkbox" id="chkOrtho" checked /> Ortho</label>
+        </div>
+        <div class="group">
+          <button id="btnView3d" title="3D view">3D</button>
+          <button id="btnViewTop" title="Top view">Top</button>
+        </div>
+      </div>
+      <div id="viewport" class="viewport"></div>
+      <div class="statusbar"><span id="hint"></span><span id="coords"></span></div>
+    </section>
+
+    <aside class="panel right">
+      <div id="props"></div>
+    </aside>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
